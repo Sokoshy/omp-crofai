@@ -67,7 +67,7 @@ const createCrofAiProvider: ExtensionFactory = async (pi) => {
 	// ── Register the /refresh-crof command ──
 	pi.registerCommand("refresh-crof", {
 		description: "Force refresh CrofAI models from the API (bypass 24h cache)",
-		handler: async (ctx) => {
+		handler: async (_args: string, ctx) => {
 			ctx.ui.notify("Refreshing CrofAI models...", "info");
 			try {
 				await ctx.modelRegistry.refreshProvider("crof", "online");
