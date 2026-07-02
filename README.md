@@ -8,21 +8,21 @@
 omp install github:Sokoshy/omp-crofai
 ```
 
-Set your API key:
+## API Key
+
+CrofAI is **not** in the `/login` provider list — set your key via environment variable:
 
 ```bash
 export CROF_API_KEY="your-key"
 ```
 
-CrofAI models appear in `/model` on next OMP launch.
+To make it permanent, add the line to your `~/.bashrc`, `~/.zshrc`, or `~/.config/fish/config.fish`.
 
-## Uninstall
-
-```bash
-omp plugin uninstall omp-crofai
-```
+Get a free key at [crof.ai](https://crof.ai) (no credit card required).
 
 ## Usage
+
+Once the key is set, CrofAI models appear in `/model` with the `crof/` prefix.
 
 | Command | Description |
 |---|---|
@@ -30,6 +30,12 @@ omp plugin uninstall omp-crofai
 | `/refresh-crof` | Force re-fetch models from the API |
 
 Models, prices, and capabilities are fetched live — nothing hardcoded.
+
+## Uninstall
+
+```bash
+omp plugin uninstall omp-crofai
+```
 
 ## Provider
 
