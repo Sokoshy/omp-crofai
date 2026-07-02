@@ -1,5 +1,4 @@
 import type { ExtensionFactory } from "@oh-my-pi/pi-coding-agent/extensibility/extensions";
-import { registerOAuthProvider } from "@oh-my-pi/pi-ai/oauth";
 
 const CROF_MODELS_URL = "https://crof.ai/v1/models";
 
@@ -19,26 +18,23 @@ interface CrofModelsResponse {
 }
 
 const createCrofAiProvider: ExtensionFactory = async (pi) => {
-	// ── Register OAuth provider for /login support ──
-	registerOAuthProvider({
-		id: "crof",
-		name: "CrofAI",
-		login: async (callbacks) => {
-			const apiKey = await callbacks.onPrompt({
-				message: "Enter your CrofAI API key:",
-				placeholder: "sk-crof-...",
-			});
-			if (!apiKey) return "";
-			return apiKey;
-		},
-	});
-
-	// ── Register the provider ──
+	// ── Register the provider with /login support ──
 	pi.registerProvider("crof", {
 		baseUrl: "https://crof.ai/v1",
 		apiKey: "CROF_API_KEY",
 		api: "openai-completions",
 		authHeader: true,
+		oauth: {
+			name: "CrofAI",
+			login: async (callbacks) => {
+				const apiKey = await callbacks.onPrompt({
+					message: "Enter your CrofAI API key:",
+					placeholder: "sk-crof-...",
+				});
+				if (!apiKey) return "";
+				return apiKey;
+			},
+		},
 		fetchDynamicModels: async (apiKey) => {
 			const res = await fetch(CROF_MODELS_URL, {
 				headers: {
