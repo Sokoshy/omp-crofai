@@ -31,7 +31,7 @@ const createCrofAiProvider: ExtensionFactory = async (pi) => {
 					message: "Enter your CrofAI API key:",
 					placeholder: "sk-crof-...",
 				});
-				if (!apiKey) return "";
+				if (!apiKey) return undefined;
 				return apiKey;
 			},
 		},
