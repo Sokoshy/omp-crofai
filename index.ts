@@ -36,10 +36,13 @@ const createCrofAiProvider: ExtensionFactory = async (pi) => {
 			},
 		},
 		fetchDynamicModels: async (apiKey) => {
+			// Don't show models until the user has set an API key
+			if (!apiKey) return [];
+
 			const res = await fetch(CROF_MODELS_URL, {
 				headers: {
 					Accept: "application/json",
-					...(apiKey ? { Authorization: `Bearer ${apiKey}` } : {}),
+					Authorization: `Bearer ${apiKey}`,
 				},
 			});
 			if (!res.ok) return [];
