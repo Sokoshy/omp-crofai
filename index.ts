@@ -19,7 +19,7 @@ interface CrofModelsResponse {
 
 const createCrofAiProvider: ExtensionFactory = async (pi) => {
 	// ── Register the provider with /login support ──
-	pi.registerProvider("crof", {
+	pi.registerProvider("CrofAI", {
 		baseUrl: "https://crof.ai/v1",
 		api: "openai-completions",
 		authHeader: true,
@@ -66,7 +66,7 @@ const createCrofAiProvider: ExtensionFactory = async (pi) => {
 		handler: async (_args: string, ctx) => {
 			ctx.ui.notify("Refreshing CrofAI models...", "info");
 			try {
-				await ctx.modelRegistry.refreshProvider("crof", "online");
+				await ctx.modelRegistry.refreshProvider("CrofAI", "online");
 				ctx.ui.notify("CrofAI models refreshed!", "info");
 			} catch (err) {
 				ctx.ui.notify(
