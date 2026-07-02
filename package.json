@@ -1,0 +1,16 @@
+{
+  "name": "omp-crofai",
+  "version": "1.0.0",
+  "description": "CrofAI provider extension for Oh My Pi — dynamic model discovery, pricing, reasoning support",
+  "main": "index.ts",
+  "files": ["index.ts", "LICENSE", "README.md"],
+  "keywords": ["omp-extension", "crofai", "provider", "llm"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sokoslay/omp-crofai"
+  },
+  "omp": {
+    "extensions": ["index.ts"]
+  }
+}
